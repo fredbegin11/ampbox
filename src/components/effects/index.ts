@@ -1,0 +1,6 @@
+export { default as Knob } from './Knob'
+export { default as CabinetPedal } from './CabinetPedal'
+export { default as ChorusPedal } from './ChorusPedal'
+export { default as DistortionPedal } from './DistortionPedal'
+export { default as DrivePedal } from './DrivePedal'
+export { default as ReverbPedal } from './ReverbPedal'
