@@ -5,6 +5,7 @@ import useChain from './useChain'
 
 const useReverb = () => {
   const [roomSizeAmount, setRoomSizeAmount] = useState(0.5)
+  const [blendAmount, setBlendAmount] = useState(0.5)
   const chain = useChain()
 
   const reverbRef = useRef<Effect<JCReverb>>()
@@ -14,8 +15,14 @@ const useReverb = () => {
     reverbRef.current?.node.roomSize.set({ value: value / 100 })
   }
 
+  const setBlend = (value: number) => {
+    setBlendAmount(value)
+    reverbRef.current?.node.wet.set({ value: value / 100 })
+  }
+
   const activate = () => {
     reverbRef.current = new Effect(new JCReverb(roomSizeAmount))
+    reverbRef.current.node.wet.set({ value: blendAmount })
     chain.add(reverbRef.current)
   }
 
@@ -23,7 +30,7 @@ const useReverb = () => {
     chain.remove(reverbRef.current)
   }
 
-  return { setRoomSize, activate, deactivate }
+  return { setBlend, setRoomSize, activate, deactivate }
 }
 
 export default useReverb

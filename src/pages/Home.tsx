@@ -1,5 +1,15 @@
 import classNames from 'classnames'
-import { Header, MediaPlayer, CabinetPedal, DistortionPedal, ChorusPedal, ReverbPedal, DrivePedal } from 'src/components'
+import {
+  Header,
+  MediaPlayer,
+  CabinetPedal,
+  DistortionPedal,
+  ChorusPedal,
+  ReverbPedal,
+  DrivePedal,
+  DelayPedal,
+  AnnihilatorPedal,
+} from 'src/components'
 import VolumePedal from 'src/components/effects/VolumePedal'
 import { useSourceInput } from 'src/hooks'
 
@@ -17,12 +27,14 @@ const Home = () => {
           <span className={classNames({ 'text-red-500': !isActive, 'text-green-500': isActive })}>{isActive ? 'Enabled' : 'Disabled'}</span>
         </span>
 
-        <div className={classNames('flex space-x-6', { 'opacity-50': !isActive })} onClick={(e) => e.stopPropagation()}>
+        <div className={classNames('grid grid-cols-6 gap-6', { 'opacity-50': !isActive })} onClick={(e) => e.stopPropagation()}>
           <DrivePedal disabled={!isActive} />
           <ReverbPedal disabled={!isActive} />
           <DistortionPedal disabled={!isActive} />
           <ChorusPedal disabled={!isActive} />
+          <DelayPedal disabled={!isActive} />
           <VolumePedal disabled={!isActive} />
+          <AnnihilatorPedal disabled={!isActive} />
           <CabinetPedal disabled={!isActive} />
         </div>
       </div>

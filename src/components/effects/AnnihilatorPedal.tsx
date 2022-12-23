@@ -1,35 +1,40 @@
 import { useState } from 'react'
 import classNames from 'classnames'
 import Knob from './Knob'
-import { useChorus } from 'src/hooks'
+import { useChebyshev, useVolume } from 'src/hooks'
 
 type Props = {
   disabled?: boolean
 }
 
-const ChorusPedal = ({ disabled }: Props) => {
-  const chorus = useChorus()
+const AnnihilatorPedal = ({ disabled }: Props) => {
+  const volume = useVolume()
+  const chebyshev = useChebyshev()
   const [isActive, setIsActive] = useState(false)
 
   const handleToggle = () => {
-    if (isActive) chorus.deactivate()
-    else chorus.activate()
+    if (isActive) {
+      volume.deactivate()
+      chebyshev.deactivate()
+    } else {
+      volume.activate()
+      chebyshev.activate()
+    }
 
     setIsActive((value) => !value)
   }
 
   return (
-    <div className='flex flex-col p-6 w-72 rounded-xl items-center space-y-8 shadow-pedal bg-blue-300'>
-      <span className='text-3xl'>Chorus</span>
+    <div className='flex flex-col p-6 w-72 rounded-xl items-center space-y-8 shadow-pedal bg-black text-white'>
+      <span className='text-3xl'>Annihilator</span>
 
       <div className='h-60'>
         <div className='w-full flex items-center justify-center'>
-          <Knob label='Depth' set={chorus.setDepth} disabled={disabled} />
-          <Knob label='Spread' set={chorus.setSpread} disabled={disabled} />
+          <Knob label='Noise' set={chebyshev.setChebyshev} disabled={disabled} />
+          <Knob label='Volume' set={volume.setVolume} disabled={disabled} />
         </div>
         <div className='w-full pb-12 flex items-center justify-center'>
-          <Knob label='Delay Time' set={chorus.setDelayTime} disabled={disabled} />
-          <Knob label='Blend' set={chorus.setBlend} disabled={disabled} />
+          <Knob label='Blend' set={chebyshev.setBlend} disabled={disabled} />
         </div>
       </div>
 
@@ -46,4 +51,4 @@ const ChorusPedal = ({ disabled }: Props) => {
   )
 }
 
-export default ChorusPedal
+export default AnnihilatorPedal

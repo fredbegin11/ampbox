@@ -25,6 +25,7 @@ const ReverbPedal = ({ disabled }: Props) => {
       <div className='h-60'>
         <div className='w-full pb-12 flex items-center'>
           <Knob label='Room Size' set={reverb.setRoomSize} disabled={disabled} />
+          <Knob label='Blend' set={reverb.setBlend} disabled={disabled} />
         </div>
       </div>
 

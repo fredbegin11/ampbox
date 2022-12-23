@@ -29,9 +29,12 @@ const DistortionPedal = ({ disabled }: Props) => {
       <span className='text-3xl'>Distortion</span>
 
       <div className='h-60'>
-        <div className='w-full pb-12 flex items-center'>
+        <div className='w-full flex items-center justify-center'>
           <Knob label='Distortion' set={distortion.setDistortion} disabled={disabled} />
           <Knob label='Volume' set={volume.setVolume} disabled={disabled} />
+        </div>
+        <div className='w-full pb-12 flex items-center justify-center'>
+          <Knob label='Blend' set={distortion.setBlend} disabled={disabled} />
         </div>
       </div>
 

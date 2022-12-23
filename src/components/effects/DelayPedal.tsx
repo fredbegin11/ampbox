@@ -1,35 +1,34 @@
 import { useState } from 'react'
 import classNames from 'classnames'
 import Knob from './Knob'
-import { useChorus } from 'src/hooks'
+import { useDelay } from 'src/hooks'
 
 type Props = {
   disabled?: boolean
 }
 
-const ChorusPedal = ({ disabled }: Props) => {
-  const chorus = useChorus()
+const DelayPedal = ({ disabled }: Props) => {
+  const delay = useDelay()
   const [isActive, setIsActive] = useState(false)
 
   const handleToggle = () => {
-    if (isActive) chorus.deactivate()
-    else chorus.activate()
+    if (isActive) delay.deactivate()
+    else delay.activate()
 
     setIsActive((value) => !value)
   }
 
   return (
-    <div className='flex flex-col p-6 w-72 rounded-xl items-center space-y-8 shadow-pedal bg-blue-300'>
-      <span className='text-3xl'>Chorus</span>
+    <div className='flex flex-col p-6 w-72 rounded-xl items-center space-y-8 shadow-pedal bg-slate-200'>
+      <span className='text-3xl'>Delay</span>
 
       <div className='h-60'>
         <div className='w-full flex items-center justify-center'>
-          <Knob label='Depth' set={chorus.setDepth} disabled={disabled} />
-          <Knob label='Spread' set={chorus.setSpread} disabled={disabled} />
+          <Knob label='Delay' set={delay.setDelay} disabled={disabled} />
+          <Knob label='Feedback' set={delay.setFeedback} disabled={disabled} />
         </div>
         <div className='w-full pb-12 flex items-center justify-center'>
-          <Knob label='Delay Time' set={chorus.setDelayTime} disabled={disabled} />
-          <Knob label='Blend' set={chorus.setBlend} disabled={disabled} />
+          <Knob label='Blend' set={delay.setBlend} disabled={disabled} />
         </div>
       </div>
 
@@ -46,4 +45,4 @@ const ChorusPedal = ({ disabled }: Props) => {
   )
 }
 
-export default ChorusPedal
+export default DelayPedal

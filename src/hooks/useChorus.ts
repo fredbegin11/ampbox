@@ -7,6 +7,7 @@ const useChorus = () => {
   const [spreadAmount, setSpreadAmount] = useState(90)
   const [depthAmount, setDepthAmount] = useState(100)
   const [delayAmount, setDelayAmount] = useState(10)
+  const [blendAmount, setBlendAmount] = useState(0.5)
 
   const chain = useChain()
   const chorusRef = useRef<Effect<Chorus>>()
@@ -32,15 +33,21 @@ const useChorus = () => {
     }
   }
 
+  const setBlend = (value: number) => {
+    setBlendAmount(value)
+    chorusRef.current?.node.wet.set({ value: value / 100 })
+  }
+
   const activate = () => {
     chorusRef.current = new Effect(new Chorus(spreadAmount, depthAmount, delayAmount))
     chorusRef.current.node.type = 'sine'
+    chorusRef.current.node.wet.set({ value: blendAmount })
     chain.add(chorusRef.current)
   }
 
   const deactivate = () => chain.remove(chorusRef.current)
 
-  return { setDepth, setSpread, setDelayTime, activate, deactivate }
+  return { setBlend, setDepth, setSpread, setDelayTime, activate, deactivate }
 }
 
 export default useChorus
