@@ -1,25 +1,26 @@
 import { useRef, useState } from 'react'
 import { Effect } from 'src/types'
 import { Gain } from 'tone'
-import useChain from './useChain'
+import useFxChain from './useFxChain'
 
 const useGain = () => {
-  const [gainAmount, setGainAmount] = useState(60)
+  const [gainAmount, setGainAmount] = useState(5)
 
-  const chain = useChain()
+  const fxChain = useFxChain()
   const gainRef = useRef<Effect<Gain>>()
 
   const setGain = (value: number) => {
-    setGainAmount(value + 10)
-    gainRef.current?.node.gain.set({ value: value + 10 })
+    console.log(value / 5 - 5)
+    setGainAmount(value / 5 - 5)
+    gainRef.current?.node.gain.set({ value: value / 5 - 5 })
   }
 
   const activate = () => {
     gainRef.current = new Effect(new Gain(gainAmount))
-    chain.add(gainRef.current)
+    fxChain.add(gainRef.current)
   }
 
-  const deactivate = () => chain.remove(gainRef.current)
+  const deactivate = () => fxChain.remove(gainRef.current)
 
   return { setGain, activate, deactivate }
 }

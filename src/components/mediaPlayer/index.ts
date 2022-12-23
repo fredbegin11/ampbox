@@ -1,1 +1,1 @@
-export { default as MediaPlayer } from './MediaPlayer'
+export { default as InputSelector } from './InputSelector'

@@ -13,13 +13,11 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
-  <React.StrictMode>
-    <SourceProvider>
-      <FxChainProvider>
-        <div>
-          <RouterProvider router={router} />
-        </div>
-      </FxChainProvider>
-    </SourceProvider>
-  </React.StrictMode>,
+  <SourceProvider>
+    <FxChainProvider>
+      <div>
+        <RouterProvider router={router} />
+      </div>
+    </FxChainProvider>
+  </SourceProvider>,
 )

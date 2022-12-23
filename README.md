@@ -15,15 +15,13 @@ Gate Pedal
 EQ Pedal
 Compressor Pedal
 
-TODOS / Idées:
-Visualizer
-Better IRs
-Better Samples
+TODOS:
+AmpSim
 Ajouter / Réordonner pedales
 Réglé le mono de mon interface
-AmpSim
 Enregistrer ce qu'on joue
-Métronome
 UI
 Lien Github
 Lien buy Me a beer
+Visualizer
+Métronome
