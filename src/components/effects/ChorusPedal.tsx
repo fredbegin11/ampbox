@@ -19,7 +19,7 @@ const ChorusPedal = ({ disabled }: Props) => {
   }
 
   return (
-    <div className='flex flex-col p-6 w-72 rounded-xl items-center space-y-8 shadow-pedal bg-blue-300'>
+    <div className='flex flex-col p-6 rounded-xl items-center space-y-8 shadow-pedal bg-blue-300'>
       <span className='text-3xl'>Chorus</span>
 
       <div className='h-60'>
@@ -28,7 +28,7 @@ const ChorusPedal = ({ disabled }: Props) => {
           <Knob label='Spread' set={chorus.setSpread} disabled={disabled} />
         </div>
         <div className='w-full pb-12 flex items-center justify-center'>
-          <Knob label='Delay Time' set={chorus.setDelayTime} disabled={disabled} />
+          <Knob label='Rate' set={chorus.setDelayTime} disabled={disabled} />
           <Knob label='Blend' set={chorus.setBlend} disabled={disabled} />
         </div>
       </div>

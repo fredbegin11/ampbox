@@ -20,7 +20,7 @@ const CabinetPedal = ({ disabled }: Props) => {
   }
 
   return (
-    <div className='flex flex-col p-6 w-72 rounded-xl items-center space-y-8 shadow-pedal bg-red-300'>
+    <div className='flex flex-col p-6 rounded-xl items-center space-y-8 shadow-pedal bg-red-300'>
       <span className='text-3xl'>CabSim</span>
 
       <div className='h-60 flex'>

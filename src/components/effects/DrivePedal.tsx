@@ -26,7 +26,7 @@ const DrivePedal = ({ disabled }: Props) => {
   }
 
   return (
-    <div className='flex flex-col p-6 w-72 rounded-xl items-center space-y-8 shadow-pedal bg-[#409365] text-white'>
+    <div className='flex flex-col p-6 rounded-xl items-center space-y-8 shadow-pedal bg-[#409365] text-white'>
       <span className='text-3xl'>Drive</span>
 
       <div className='h-60'>

@@ -4,8 +4,19 @@ To run the project:
 
 > npm i && npm start
 
-TODOS / Idées
+Pédales à implémenter:
+BitCrusher Pedal
+Phaser Pedal
+PitchShift Pedal
+StereoWidener Pedal
+Tremolo Pedal
+Vibrato Pedal
+Gate Pedal
+EQ Pedal
+Compressor Pedal
 
+TODOS / Idées:
+Visualizer
 Better IRs
 Better Samples
 Ajouter / Réordonner pedales

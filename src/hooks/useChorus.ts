@@ -6,7 +6,7 @@ import useChain from './useChain'
 const useChorus = () => {
   const [spreadAmount, setSpreadAmount] = useState(90)
   const [depthAmount, setDepthAmount] = useState(100)
-  const [delayAmount, setDelayAmount] = useState(10)
+  const [delayAmount, setDelayAmount] = useState(5)
   const [blendAmount, setBlendAmount] = useState(0.5)
 
   const chain = useChain()
@@ -27,9 +27,9 @@ const useChorus = () => {
   }
 
   const setDelayTime = (value: number) => {
-    setDelayAmount(value / 5)
+    setDelayAmount(10 - value / 10)
     if (chorusRef.current) {
-      chorusRef.current.node.delayTime = value / 5
+      chorusRef.current.node.delayTime = 10 - value / 10
     }
   }
 
