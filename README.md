@@ -2,5 +2,4 @@ AmpBox is a js pedalboard built using React, Tailwind & ToneJS. This is experime
 
 To run the project:
 
-> npm i
-> npm start
+> npm i && npm start

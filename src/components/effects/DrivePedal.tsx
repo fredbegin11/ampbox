@@ -1,19 +1,26 @@
 import { useState } from 'react'
 import classNames from 'classnames'
 import Knob from './Knob'
-import { useDrive } from 'src/hooks'
+import { useGain, useVolume } from 'src/hooks'
 
 type Props = {
   disabled?: boolean
 }
 
 const DrivePedal = ({ disabled }: Props) => {
-  const drive = useDrive()
   const [isActive, setIsActive] = useState(false)
 
+  const drive = useGain()
+  const volume = useVolume()
+
   const handleToggle = () => {
-    if (isActive) drive.deactivate()
-    else drive.activate()
+    if (isActive) {
+      volume.deactivate()
+      drive.deactivate()
+    } else {
+      volume.activate()
+      drive.activate()
+    }
 
     setIsActive((value) => !value)
   }
@@ -24,7 +31,7 @@ const DrivePedal = ({ disabled }: Props) => {
 
       <div className='h-60'>
         <div className='w-full pb-12 flex items-center'>
-          <Knob label='Volume' set={drive.setVolume} disabled={disabled} />
+          <Knob label='Volume' set={volume.setVolume} disabled={disabled} />
           <Knob label='Gain' set={drive.setGain} disabled={disabled} />
         </div>
       </div>

@@ -1,19 +1,25 @@
 import { useState } from 'react'
 import classNames from 'classnames'
 import Knob from './Knob'
-import { useDistortion } from 'src/hooks'
+import { useDistortion, useVolume } from 'src/hooks'
 
 type Props = {
   disabled?: boolean
 }
 
 const DistortionPedal = ({ disabled }: Props) => {
+  const volume = useVolume()
   const distortion = useDistortion()
   const [isActive, setIsActive] = useState(false)
 
   const handleToggle = () => {
-    if (isActive) distortion.deactivate()
-    else distortion.activate()
+    if (isActive) {
+      volume.deactivate()
+      distortion.deactivate()
+    } else {
+      volume.activate()
+      distortion.activate()
+    }
 
     setIsActive((value) => !value)
   }
@@ -25,7 +31,7 @@ const DistortionPedal = ({ disabled }: Props) => {
       <div className='h-60'>
         <div className='w-full pb-12 flex items-center'>
           <Knob label='Distortion' set={distortion.setDistortion} disabled={disabled} />
-          <Knob label='Volume' set={distortion.setVolume} disabled={disabled} />
+          <Knob label='Volume' set={volume.setVolume} disabled={disabled} />
         </div>
       </div>
 

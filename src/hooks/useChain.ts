@@ -1,19 +1,24 @@
 import { useContext, useEffect } from 'react'
 import { FxChainContext, SourceContext } from 'src/context'
+import { Effect } from 'src/types/Effect'
 import { Destination, ToneAudioNode } from 'tone'
 
 const useChain = () => {
   const { source } = useContext(SourceContext)
   const { chain, setChain } = useContext(FxChainContext)
 
-  const add = (node: ToneAudioNode) => setChain((value) => [...value, node])
+  const add = (effect: Effect<ToneAudioNode>) => {
+    setChain((value) => [...value, effect])
+  }
 
-  // TODO: Fix this (name is not unique)
-  const remove = (node: ToneAudioNode) => setChain((value) => value.filter((item) => item.name !== node.name))
+  const remove = (effect?: Effect<ToneAudioNode>) => {
+    effect?.node.dispose()
+    setChain((value) => value.filter((item) => item.id !== effect?.id))
+  }
 
   useEffect(() => {
     source?.disconnect()
-    source?.chain(...chain, Destination)
+    source?.chain(...chain.map((item) => item.node), Destination)
   }, [chain])
 
   return { chain, add, remove }

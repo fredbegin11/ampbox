@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import classNames from 'classnames'
 import Knob from './Knob'
-import { useBoost } from 'src/hooks'
+import { useVolume } from 'src/hooks'
 
 type Props = {
   disabled?: boolean
 }
 
 const BoostPedal = ({ disabled }: Props) => {
-  const boost = useBoost()
+  const boost = useVolume()
   const [isActive, setIsActive] = useState(false)
 
   const handleToggle = () => {
