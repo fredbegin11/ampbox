@@ -33,7 +33,7 @@ const Knob = ({ diameter, set, disabled, label, ...rest }: Props) => {
         max={100}
         defaultValue={amount}
         className='input-knob'
-        data-diameter={diameter || '100'}
+        data-diameter={diameter || '80'}
         data-src={knob}
         data-sprites='100'
         {...rest}

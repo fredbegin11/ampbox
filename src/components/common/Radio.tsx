@@ -11,7 +11,7 @@ const Radio = ({ label, ...rest }: Props) => {
   return (
     <div className='flex flex-col items-center'>
       {label && <label>{label}</label>}
-      <input type='radio' className='input-switch' data-src={switchOnOff} data-diameter='80' {...rest} />
+      <input type='radio' className='input-switch' data-src={switchOnOff} data-diameter='60' {...rest} />
     </div>
   )
 }

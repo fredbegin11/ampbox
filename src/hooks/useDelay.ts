@@ -12,12 +12,12 @@ const useDelay = () => {
   const delayRef = useRef<Effect<FeedbackDelay>>()
 
   const setDelay = (value: number) => {
-    setDelayTime(value)
+    setDelayTime(value / 100)
     delayRef.current?.node.delayTime.set({ value: value / 100 })
   }
 
   const setFeedback = (value: number) => {
-    setFeedbackAmount(value)
+    setFeedbackAmount(value / 100)
     delayRef.current?.node.feedback.set({ value: value / 100 })
   }
 

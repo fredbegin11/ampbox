@@ -1,31 +1,36 @@
 import { useState } from 'react'
 import classNames from 'classnames'
 import { Knob } from 'src/components/common'
-import { useReverb } from 'src/hooks'
+import { usePhaser } from 'src/hooks'
 
 type Props = {
   disabled?: boolean
 }
 
-const ReverbPedal = ({ disabled }: Props) => {
-  const reverb = useReverb()
+const PhaserPedal = ({ disabled }: Props) => {
+  const phaser = usePhaser()
   const [isActive, setIsActive] = useState(false)
 
   const handleToggle = () => {
-    if (isActive) reverb.deactivate()
-    else reverb.activate()
+    if (isActive) phaser.deactivate()
+    else phaser.activate()
 
     setIsActive((value) => !value)
   }
 
   return (
-    <div className='flex flex-col w-48 max-w-[16rem] h-[500px] p-6 rounded-xl items-center justify-between space-y-8 shadow-pedal bg-slate-700 text-white'>
+    <div className='flex flex-col w-48 max-w-[16rem] h-[500px] p-6 rounded-xl items-center justify-between space-y-8 shadow-pedal bg-orange-400'>
       <div className='flex flex-col items-center space-y-6'>
-        <span className='text-3xl'>Reverb</span>
+        <span className='text-3xl'>Phaser</span>
 
-        <div className='w-full flex items-center justify-center'>
-          <Knob label='Room' set={reverb.setRoomSize} disabled={disabled} />
-          <Knob label='Blend' set={reverb.setBlend} disabled={disabled} />
+        <div className='flex flex-col items-center'>
+          <div className='w-full flex items-center justify-center'>
+            <Knob label='Depth' set={phaser.setDepth} disabled={disabled} />
+            <Knob label='Rate' set={phaser.setSpeed} disabled={disabled} />
+          </div>
+          <div className='w-full flex items-center justify-center'>
+            <Knob label='Blend' set={phaser.setBlend} disabled={disabled} />
+          </div>
         </div>
       </div>
 
@@ -44,4 +49,4 @@ const ReverbPedal = ({ disabled }: Props) => {
   )
 }
 
-export default ReverbPedal
+export default PhaserPedal

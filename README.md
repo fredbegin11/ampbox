@@ -5,8 +5,6 @@ To run the project:
 > npm i && npm start
 
 Pédales à implémenter:
-BitCrusher Pedal
-Phaser Pedal
 PitchShift Pedal
 StereoWidener Pedal
 Tremolo Pedal
@@ -16,12 +14,9 @@ EQ Pedal
 Compressor Pedal
 
 TODOS:
-AmpSim
+UI
 Ajouter / Réordonner pedales
 Réglé le mono de mon interface
 Enregistrer ce qu'on joue
-UI
-Lien Github
-Lien buy Me a beer
 Visualizer
 Métronome

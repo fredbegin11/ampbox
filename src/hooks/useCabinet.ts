@@ -1,46 +1,43 @@
 import { useEffect, useRef, useState } from 'react'
 import { Convolver } from 'tone'
-import ir1 from 'src/assets/ir/ir1.wav'
-import ir2 from 'src/assets/ir/ir2.wav'
-import ir3 from 'src/assets/ir/ir3.wav'
-import ir4 from 'src/assets/ir/ir4.wav'
-import ir5 from 'src/assets/ir/ir5.wav'
-import ir6 from 'src/assets/ir/ir6.wav'
+import bright from 'src/assets/ir/bright.wav'
+import deep from 'src/assets/ir/deep.wav'
+import defaultIr from 'src/assets/ir/default.wav'
 import { Effect } from 'src/types'
 import useFxChain from './useFxChain'
 import useSource from './useSource'
 
-const getCab = (value: number) => {
+export enum CabinetType {
+  deep = 'Deep',
+  bright = 'Bright',
+  default = 'Default',
+}
+
+const getCab = (value: CabinetType) => {
   switch (value) {
-    case 1:
-      return ir1
-    case 2:
-      return ir2
-    case 3:
-      return ir3
-    case 4:
-      return ir4
-    case 5:
-      return ir5
-    default:
-      return ir6
+    case CabinetType.default:
+      return defaultIr
+    case CabinetType.bright:
+      return bright
+    case CabinetType.deep:
+      return deep
   }
 }
 
 const useCabinet = () => {
   const { isActive } = useSource()
-  const [activeCab, setActiveCab] = useState(1)
+  const [activeCab, setActiveCab] = useState<CabinetType>(CabinetType.default)
 
   const fxChain = useFxChain()
 
   const cabinetRef = useRef<Effect<Convolver>>()
 
-  const changeCab = (value: number) => {
+  const changeCab = (value: CabinetType) => {
     setActiveCab(value)
     cabinetRef.current?.node.load(getCab(value))
   }
 
-  const activate = (cab?: number) => {
+  const activate = (cab?: CabinetType) => {
     cabinetRef.current = new Effect(new Convolver(getCab(cab || activeCab)))
     fxChain.add(cabinetRef.current, true)
   }
@@ -53,7 +50,7 @@ const useCabinet = () => {
     }
   }, [isActive])
 
-  const isCabActive = (cab: number) => activeCab === cab
+  const isCabActive = (cab: CabinetType) => activeCab === cab
 
   return { activate, changeCab, activeCab, deactivate, toneAudioNode: cabinetRef.current, isCabActive }
 }

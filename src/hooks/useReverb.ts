@@ -11,8 +11,8 @@ const useReverb = () => {
   const reverbRef = useRef<Effect<JCReverb>>()
 
   const setRoomSize = (value: number) => {
-    setRoomSizeAmount(value / 100)
-    reverbRef.current?.node.roomSize.set({ value: value / 100 })
+    setRoomSizeAmount(value / 105)
+    reverbRef.current?.node.roomSize.set({ value: value / 105 })
   }
 
   const setBlend = (value: number) => {
