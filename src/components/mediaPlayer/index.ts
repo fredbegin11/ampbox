@@ -1,1 +1,1 @@
-export { default as InputSelector } from './InputSelector'
+export { default as SourceSelector } from './SourceSelector'

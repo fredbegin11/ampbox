@@ -1,5 +1,3 @@
-import classNames from 'classnames'
-
 interface Option {
   value: string
   label: string
@@ -17,7 +15,7 @@ const Select = ({ name, options, placeholder, ...rest }: Props) => {
       <select
         id={name}
         name={name}
-        className={classNames('bg-gray-50 border-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2')}
+        className='bg-gray-50 border-2 rounded-lg focus:ring-neutral-900 focus:border-neutral-900 block w-full p-2'
         {...rest}
       >
         <option value='' disabled hidden>

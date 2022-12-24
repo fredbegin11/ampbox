@@ -1,7 +1,7 @@
 import { useSource } from 'src/hooks'
 import { Select } from 'src/components/common'
 
-const InputSelector = () => {
+const SourceSelector = () => {
   const { init, inputs } = useSource()
 
   const options = inputs.map((input) => ({ label: input.name, value: input.id }))
@@ -15,8 +15,8 @@ const InputSelector = () => {
   }
 
   return (
-    <div className='flex flex-col space-y-4'>
-      <h2 className='text-xl font-bold'>Select your input or sample to start using the app</h2>
+    <div className='flex flex-col space-y-2 items-center'>
+      <h2 className='text-xl font-bold'>Current source</h2>
       <div className='flex space-x-3'>
         <Select
           defaultValue=''
@@ -31,4 +31,4 @@ const InputSelector = () => {
   )
 }
 
-export default InputSelector
+export default SourceSelector
