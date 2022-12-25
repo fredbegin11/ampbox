@@ -4,7 +4,7 @@ import { SourceContext } from 'src/context'
 import { Input } from 'src/types/Input'
 
 const useSource = () => {
-  const { source, setSource, inputs } = useContext(SourceContext)
+  const { source, setSource, inputs, setHasPermissions, hasPermission } = useContext(SourceContext)
 
   const init = async (input: Input) => {
     source?.dispose()
@@ -21,7 +21,17 @@ const useSource = () => {
     }
   }
 
-  return { source, isActive: !!source, init, inputs }
+  const checkPermissions = async () => {
+    try {
+      const medias = await navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+      medias.getTracks().forEach((x) => x.stop())
+      setHasPermissions(true)
+    } catch (_e) {
+      setHasPermissions(false)
+    }
+  }
+
+  return { source, isActive: !!source, init, inputs, setHasPermissions, hasPermission, checkPermissions }
 }
 
 export default useSource

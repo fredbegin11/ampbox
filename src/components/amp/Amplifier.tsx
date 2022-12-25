@@ -1,9 +1,8 @@
-import classNames from 'classnames'
 import { useContext, useEffect, useState } from 'react'
 import grid from 'src/assets/images/grid.jpg'
 import { SourceContext } from 'src/context'
 import { useCabinet, useEq3, useGain, useVolume } from 'src/hooks'
-import { Checkbox, Knob } from '../common'
+import { Knob } from '../common'
 
 interface Props {
   disabled?: boolean

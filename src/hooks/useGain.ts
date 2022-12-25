@@ -4,15 +4,14 @@ import { Gain } from 'tone'
 import useFxChain from './useFxChain'
 
 const useGain = () => {
-  const [gainAmount, setGainAmount] = useState(5)
+  const [gainAmount, setGainAmount] = useState(25)
 
   const fxChain = useFxChain()
   const gainRef = useRef<Effect<Gain>>()
 
   const setGain = (value: number) => {
-    console.log(value / 5 - 5)
-    setGainAmount(value / 5 - 5)
-    gainRef.current?.node.gain.set({ value: value / 5 - 5 })
+    setGainAmount(value / 2)
+    gainRef.current?.node.gain.set({ value: value / 2 })
   }
 
   const activate = () => {

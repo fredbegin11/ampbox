@@ -1,8 +1,16 @@
+import { useEffect } from 'react'
 import { useSource } from 'src/hooks'
 import { Select } from 'src/components/common'
+import classNames from 'classnames'
 
 const SourceSelector = () => {
-  const { init, inputs } = useSource()
+  const { init, inputs, hasPermission, checkPermissions } = useSource()
+
+  useEffect(() => {
+    if (!hasPermission) {
+      checkPermissions()
+    }
+  }, [])
 
   const options = inputs.map((input) => ({ label: input.name, value: input.id }))
 
@@ -27,6 +35,13 @@ const SourceSelector = () => {
           onChange={handleChange}
         />
       </div>
+
+      <span>
+        Microphone permission:
+        <span className={classNames('ml-1', { 'text-red-600': !hasPermission, 'text-green-600': hasPermission })}>
+          {hasPermission ? 'Okay' : 'Denied'}
+        </span>
+      </span>
     </div>
   )
 }

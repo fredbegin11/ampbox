@@ -19,7 +19,7 @@ const ReverbPedal = ({ disabled }: Props) => {
   }
 
   return (
-    <div className='flex flex-col w-48 max-w-[16rem] h-[500px] p-6 rounded-xl items-center justify-between space-y-8 shadow-pedal bg-slate-700 text-white'>
+    <div className='flex flex-col w-48 max-w-[16rem] h-[450px] p-6 rounded-xl items-center justify-between shadow-pedal bg-slate-700 text-white'>
       <div className='flex flex-col items-center space-y-6'>
         <span className='text-3xl'>Reverb</span>
 

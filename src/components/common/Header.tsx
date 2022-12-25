@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
+import logo from 'src/assets/images/logo.png'
 import github from 'src/assets/images/github.png'
 import beer from 'src/assets/images/beer.png'
 
@@ -8,7 +9,8 @@ const Header = ({ className, ...rest }: React.DetailedHTMLProps<React.HTMLAttrib
     <header>
       <nav className={classNames('px-8 py-4 bg-neutral-900', className)} {...rest}>
         <div className='flex flex-wrap justify-between items-center'>
-          <Link to='/' className='flex items-center'>
+          <Link to='/' className='flex items-center space-x-4'>
+            <img src={logo} className='w-6 h-6 invert' />
             <span className='self-center text-xl font-semibold whitespace-nowrap text-white'>AmpBox</span>
           </Link>
 

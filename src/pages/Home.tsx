@@ -13,11 +13,11 @@ const Home = () => {
           <Amplifier />
 
           <div className='flex flex-wrap gap-8 justify-center' onClick={(e) => e.stopPropagation()}>
-            <ReverbPedal />
-            <PhaserPedal />
             <DistortionPedal />
+            <PhaserPedal />
             <ChorusPedal />
             <DelayPedal />
+            <ReverbPedal />
             <VolumePedal />
           </div>
         </div>

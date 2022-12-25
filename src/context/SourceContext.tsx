@@ -8,31 +8,45 @@ import { Input } from 'src/types/Input'
 interface SourceContextProps {
   source?: Player | UserMedia
   setSource: React.Dispatch<React.SetStateAction<Player | UserMedia | undefined>>
+  hasPermission?: boolean
+  setHasPermissions: React.Dispatch<React.SetStateAction<boolean>>
   inputs: Input[]
 }
 
-export const SourceContext = React.createContext<SourceContextProps>({ setSource: () => {}, inputs: [] })
+export const SourceContext = React.createContext<SourceContextProps>({ setSource: () => {}, inputs: [], setHasPermissions: () => {} })
 
 interface Props {
   children: React.ReactNode
 }
 
 export const SourceProvider = ({ children }: Props) => {
+  const [hasPermission, setHasPermissions] = useState(false)
   const [source, setSource] = useState<Player | UserMedia>()
-
   const [inputs, setInputs] = useState<Input[]>([])
 
   const addInput = (input: Input) => setInputs((values) => [...values, input])
 
-  useEffect(() => {
+  const addSamples = () => {
     addInput(new Input(dry1, 'Sample #1 - Dry Electric Guitar'))
     addInput(new Input(dry2, 'Sample #2 - Dry Electric Guitar'))
     addInput(new Input(dry3, 'Sample #3 - Dry Accoustic Guitar'))
+  }
 
+  const addInputs = () => {
     UserMedia.enumerateDevices().then((devices) => {
-      devices.forEach((device) => addInput(new Input(device, `Input - ${device.label}`)))
+      devices.forEach((device) => {
+        addInput(new Input(device, `Input - ${device.label}`))
+      })
     })
+  }
+
+  useEffect(() => {
+    addSamples()
   }, [])
 
-  return <SourceContext.Provider value={{ source, setSource, inputs }}>{children}</SourceContext.Provider>
+  useEffect(() => {
+    if (hasPermission) addInputs()
+  }, [hasPermission])
+
+  return <SourceContext.Provider value={{ source, setSource, inputs, setHasPermissions, hasPermission }}>{children}</SourceContext.Provider>
 }
