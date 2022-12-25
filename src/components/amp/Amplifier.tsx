@@ -45,7 +45,7 @@ const Amplifier = ({ disabled }: Props) => {
         <div className='flex flex-col items-center'>
           <span className='block'>Power</span>
 
-          <div className='h-[60px] w-[60px] flex items-center justify-center'>
+          <div className='h-[50px] w-[50px] flex items-center justify-center'>
             <div className='rounded-full h-6 aspect-square bg-red-800 bottom-0 '>
               <div className='rounded-full blur-sm h-6 aspect-square bg-red-600' />
             </div>
