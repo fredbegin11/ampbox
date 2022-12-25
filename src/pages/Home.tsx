@@ -4,7 +4,7 @@ import VolumePedal from 'src/components/effects/VolumePedal'
 
 const Home = () => {
   return (
-    <>
+    <div className='min-w-[500px]'>
       <Header />
       <div className='h-full bg-neutral-50 flex flex-col p-8 space-y-8'>
         <SourceSelector />
@@ -22,7 +22,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
