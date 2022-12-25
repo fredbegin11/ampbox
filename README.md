@@ -19,12 +19,12 @@ http://ampbox.io/
 
 ## Next on the todo list:
 
-- Record as a wav
+- Work on the UI / UX
 - StereoWidener Pedal
 - Tremolo Pedal
 - Compressor Pedal
 - Make your own pedalboard (add / order pedals)
-- Visualizer
+- Sound Visualizer
 - Metronome
 
 ✌️✌️✌️✌✌
