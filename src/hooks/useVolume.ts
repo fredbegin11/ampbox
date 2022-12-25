@@ -3,7 +3,11 @@ import { Effect } from 'src/types'
 import { Volume } from 'tone'
 import useFxChain from './useFxChain'
 
-const useVolume = () => {
+interface Props {
+  orderWeight: number
+}
+
+const useVolume = ({ orderWeight }: Props) => {
   const [volumeAmount, setVolumeAmount] = useState(0)
   const fxChain = useFxChain()
 
@@ -15,7 +19,7 @@ const useVolume = () => {
   }
 
   const activate = () => {
-    volumeRef.current = new Effect(new Volume(volumeAmount))
+    volumeRef.current = new Effect({ node: new Volume(volumeAmount), orderWeight })
     fxChain.add(volumeRef.current)
   }
 

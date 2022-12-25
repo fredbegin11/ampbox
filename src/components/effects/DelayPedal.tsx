@@ -8,7 +8,7 @@ type Props = {
 }
 
 const DelayPedal = ({ disabled }: Props) => {
-  const delay = useDelay()
+  const delay = useDelay({ orderWeight: 80 })
   const [isActive, setIsActive] = useState(false)
 
   const handleToggle = () => {

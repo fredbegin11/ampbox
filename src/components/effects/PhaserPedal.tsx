@@ -8,7 +8,7 @@ type Props = {
 }
 
 const PhaserPedal = ({ disabled }: Props) => {
-  const phaser = usePhaser()
+  const phaser = usePhaser({ orderWeight: 60 })
   const [isActive, setIsActive] = useState(false)
 
   const handleToggle = () => {

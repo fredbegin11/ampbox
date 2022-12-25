@@ -8,7 +8,7 @@ type Props = {
 }
 
 const VolumePedal = ({ disabled }: Props) => {
-  const volume = useVolume()
+  const volume = useVolume({ orderWeight: 100 })
   const [isActive, setIsActive] = useState(false)
 
   const handleToggle = () => {

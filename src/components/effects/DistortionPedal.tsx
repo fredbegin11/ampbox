@@ -8,8 +8,8 @@ type Props = {
 }
 
 const DistortionPedal = ({ disabled }: Props) => {
-  const volume = useVolume()
-  const distortion = useDistortion()
+  const volume = useVolume({ orderWeight: 50 })
+  const distortion = useDistortion({ orderWeight: 51 })
   const [isActive, setIsActive] = useState(false)
 
   const handleToggle = () => {

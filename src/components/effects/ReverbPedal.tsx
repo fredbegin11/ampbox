@@ -8,7 +8,7 @@ type Props = {
 }
 
 const ReverbPedal = ({ disabled }: Props) => {
-  const reverb = useReverb()
+  const reverb = useReverb({ orderWeight: 90 })
   const [isActive, setIsActive] = useState(false)
 
   const handleToggle = () => {

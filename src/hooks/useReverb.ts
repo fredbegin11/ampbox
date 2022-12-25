@@ -3,7 +3,11 @@ import { Effect } from 'src/types'
 import { JCReverb } from 'tone'
 import useFxChain from './useFxChain'
 
-const useReverb = () => {
+interface Props {
+  orderWeight: number
+}
+
+const useReverb = ({ orderWeight }: Props) => {
   const [roomSizeAmount, setRoomSizeAmount] = useState(0.5)
   const [blendAmount, setBlendAmount] = useState(0.5)
   const fxChain = useFxChain()
@@ -11,8 +15,8 @@ const useReverb = () => {
   const reverbRef = useRef<Effect<JCReverb>>()
 
   const setRoomSize = (value: number) => {
-    setRoomSizeAmount(value / 105)
-    reverbRef.current?.node.roomSize.set({ value: value / 105 })
+    setRoomSizeAmount(value / 100)
+    reverbRef.current?.node.roomSize.set({ value: value / 100 })
   }
 
   const setBlend = (value: number) => {
@@ -21,8 +25,9 @@ const useReverb = () => {
   }
 
   const activate = () => {
-    reverbRef.current = new Effect(new JCReverb(roomSizeAmount))
+    reverbRef.current = new Effect({ node: new JCReverb(roomSizeAmount), orderWeight })
     reverbRef.current.node.wet.set({ value: blendAmount })
+    reverbRef.current.node.debug = true
     fxChain.add(reverbRef.current)
   }
 

@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { getDestination, Player, UserMedia, setContext, Context } from 'tone'
 import { SourceContext } from 'src/context'
 import { Input } from 'src/types/Input'
@@ -6,9 +6,11 @@ import { Input } from 'src/types/Input'
 const useSource = () => {
   const { source, setSource, inputs, setHasPermissions, hasPermission } = useContext(SourceContext)
 
+  useEffect(() => {
+    setContext(new Context({ latencyHint: 'interactive' }))
+  }, [])
+
   const init = async (input: Input) => {
-    const context = new Context(new AudioContext({ latencyHint: 0, sampleRate: 44100 }))
-    setContext(context)
     source?.dispose()
 
     if (typeof input.media === 'string') {
@@ -16,7 +18,7 @@ const useSource = () => {
       musicPlayer.chain(getDestination())
       setSource(musicPlayer)
     } else {
-      const userMedia = new UserMedia({ context: context })
+      const userMedia = new UserMedia()
       await userMedia.open(input.media.deviceId)
       userMedia.chain(getDestination())
       setSource(userMedia)

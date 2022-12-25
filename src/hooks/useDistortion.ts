@@ -3,7 +3,11 @@ import { Effect } from 'src/types'
 import { Distortion } from 'tone'
 import useFxChain from './useFxChain'
 
-const useDistortion = () => {
+interface Props {
+  orderWeight: number
+}
+
+const useDistortion = ({ orderWeight }: Props) => {
   const [distortionAmount, setDistortionAmount] = useState(1)
   const [blendAmount, setBlendAmount] = useState(0.5)
 
@@ -22,7 +26,7 @@ const useDistortion = () => {
   }
 
   const activate = () => {
-    distortionRef.current = new Effect(new Distortion(distortionAmount))
+    distortionRef.current = new Effect({ node: new Distortion(distortionAmount), orderWeight })
     distortionRef.current.node.wet.set({ value: blendAmount })
     fxChain.add(distortionRef.current)
   }

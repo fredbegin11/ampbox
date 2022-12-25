@@ -3,7 +3,11 @@ import { Effect } from 'src/types'
 import { Phaser } from 'tone'
 import useFxChain from './useFxChain'
 
-const usePhaser = () => {
+interface Props {
+  orderWeight: number
+}
+
+const usePhaser = ({ orderWeight }: Props) => {
   const [depthAmount, setDepthAmount] = useState(2.5)
   const [frequency, setFrequency] = useState(500)
   const [blendAmount, setBlendAmount] = useState(0.5)
@@ -29,7 +33,7 @@ const usePhaser = () => {
   }
 
   const activate = () => {
-    reverbRef.current = new Effect(new Phaser(frequency, depthAmount))
+    reverbRef.current = new Effect({ node: new Phaser(frequency, depthAmount), orderWeight })
     reverbRef.current.node.wet.set({ value: blendAmount })
     fxChain.add(reverbRef.current)
   }

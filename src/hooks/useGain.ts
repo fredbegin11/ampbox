@@ -3,7 +3,11 @@ import { Effect } from 'src/types'
 import { Gain } from 'tone'
 import useFxChain from './useFxChain'
 
-const useGain = () => {
+interface Props {
+  orderWeight: number
+}
+
+const useGain = ({ orderWeight }: Props) => {
   const [gainAmount, setGainAmount] = useState(25)
 
   const fxChain = useFxChain()
@@ -15,7 +19,7 @@ const useGain = () => {
   }
 
   const activate = () => {
-    gainRef.current = new Effect(new Gain(gainAmount))
+    gainRef.current = new Effect({ node: new Gain(gainAmount), orderWeight })
     fxChain.add(gainRef.current)
   }
 

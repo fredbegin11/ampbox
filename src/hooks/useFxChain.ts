@@ -6,8 +6,8 @@ import { getDestination, ToneAudioNode } from 'tone'
 const useFxChain = () => {
   const { fxChain, setChain } = useContext(FxChainContext)
 
-  const add = (effect: Effect<ToneAudioNode>, first?: boolean) => {
-    setChain((value) => (first ? [effect, ...value] : [...value, effect]))
+  const add = (effect: Effect<ToneAudioNode>) => {
+    setChain((value) => [...value, effect].sort((a, b) => (a.orderWeight < b.orderWeight ? -1 : 1)))
   }
 
   const remove = (effect?: Effect<ToneAudioNode>) => {

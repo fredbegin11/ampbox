@@ -3,7 +3,11 @@ import { Effect } from 'src/types'
 import { EQ3 } from 'tone'
 import useFxChain from './useFxChain'
 
-const useEq3 = () => {
+interface Props {
+  orderWeight: number
+}
+
+const useEq3 = ({ orderWeight }: Props) => {
   const [lowAmount, setLowAmount] = useState(0)
   const [midAmount, setMidAmount] = useState(0)
   const [highAmount, setHighAmount] = useState(0)
@@ -27,7 +31,7 @@ const useEq3 = () => {
   }
 
   const activate = () => {
-    eqRef.current = new Effect(new EQ3(lowAmount, midAmount, highAmount))
+    eqRef.current = new Effect({ node: new EQ3(lowAmount, midAmount, highAmount), orderWeight })
     eqRef.current?.node.lowFrequency.set({ value: 100 })
     eqRef.current?.node.highFrequency.set({ value: 1200 })
     fxChain.add(eqRef.current)

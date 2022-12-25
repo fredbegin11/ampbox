@@ -15,10 +15,10 @@ const useCabinet = () => {
   const stereoRef = useRef<Effect<StereoWidener>>()
 
   const activate = () => {
-    cabinetRef.current = new Effect(new Convolver(defaultIr))
-    monoRef.current = new Effect(new Mono())
-    fxChain.add(cabinetRef.current, true)
-    fxChain.add(monoRef.current, true)
+    cabinetRef.current = new Effect({ node: new Convolver(defaultIr), orderWeight: 2 })
+    monoRef.current = new Effect({ node: new Mono(), orderWeight: 1 })
+    fxChain.add(cabinetRef.current)
+    fxChain.add(monoRef.current)
   }
 
   const deactivate = () => {

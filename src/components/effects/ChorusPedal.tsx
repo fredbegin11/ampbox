@@ -8,7 +8,7 @@ type Props = {
 }
 
 const ChorusPedal = ({ disabled }: Props) => {
-  const chorus = useChorus()
+  const chorus = useChorus({ orderWeight: 70 })
   const [isActive, setIsActive] = useState(false)
 
   const handleToggle = () => {

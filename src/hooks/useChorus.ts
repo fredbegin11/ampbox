@@ -3,7 +3,11 @@ import { Effect } from 'src/types'
 import { Chorus } from 'tone'
 import useFxChain from './useFxChain'
 
-const useChorus = () => {
+interface Props {
+  orderWeight: number
+}
+
+const useChorus = ({ orderWeight }: Props) => {
   const [spreadAmount, setSpreadAmount] = useState(90)
   const [depthAmount, setDepthAmount] = useState(100)
   const [delayAmount, setDelayAmount] = useState(5)
@@ -39,7 +43,7 @@ const useChorus = () => {
   }
 
   const activate = () => {
-    chorusRef.current = new Effect(new Chorus(spreadAmount, depthAmount, delayAmount))
+    chorusRef.current = new Effect({ node: new Chorus(spreadAmount, depthAmount, delayAmount), orderWeight })
     chorusRef.current.node.type = 'sine'
     chorusRef.current.node.wet.set({ value: blendAmount })
     fxChain.add(chorusRef.current)

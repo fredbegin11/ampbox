@@ -12,9 +12,9 @@ const Amplifier = ({ disabled }: Props) => {
   const [isActive, setIsActive] = useState(false)
   const { source } = useContext(SourceContext)
   useCabinet()
-  const eq = useEq3()
-  const volume = useVolume()
-  const gain = useGain()
+  const volume = useVolume({ orderWeight: 10 })
+  const gain = useGain({ orderWeight: 11 })
+  const eq = useEq3({ orderWeight: 12 })
 
   useEffect(() => {
     if (source && !isActive) {

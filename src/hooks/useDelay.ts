@@ -3,7 +3,11 @@ import { Effect } from 'src/types'
 import { FeedbackDelay } from 'tone'
 import useFxChain from './useFxChain'
 
-const useDelay = () => {
+interface Props {
+  orderWeight: number
+}
+
+const useDelay = ({ orderWeight }: Props) => {
   const [delayTime, setDelayTime] = useState(0.5)
   const [feedbackAmount, setFeedbackAmount] = useState(0.5)
   const [blendAmount, setBlendAmount] = useState(0.5)
@@ -27,7 +31,7 @@ const useDelay = () => {
   }
 
   const activate = () => {
-    delayRef.current = new Effect(new FeedbackDelay(delayTime, feedbackAmount))
+    delayRef.current = new Effect({ node: new FeedbackDelay(delayTime, feedbackAmount), orderWeight })
     delayRef.current?.node.wet.set({ value: blendAmount })
     fxChain.add(delayRef.current)
   }
