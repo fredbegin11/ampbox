@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { Effect } from 'src/types'
 import { Recorder, getDestination } from 'tone'
 import useFxChain from './useFxChain'
+import { webmBlobToWavBlob } from 'src/utils'
 
 const useRecorder = () => {
   const [isRecording, setIsRecording] = useState(false)
@@ -22,9 +23,10 @@ const useRecorder = () => {
     setIsRecording(false)
 
     if (recording) {
-      const url = URL.createObjectURL(recording)
+      const wavBlob = await webmBlobToWavBlob(recording)
+      const url = URL.createObjectURL(wavBlob)
       const anchor = document.createElement('a')
-      anchor.download = 'recording.webm'
+      anchor.download = 'recording.wav'
       anchor.href = url
       anchor.click()
     }
