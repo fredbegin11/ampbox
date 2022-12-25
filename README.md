@@ -1,17 +1,30 @@
-AmpBox is a js virtual pedalboard built using React, Tailwind & ToneJS. This is experimental as of now and might be unstable.
+# Ampbox - http://ampbox.io/
 
-To run the project:
+## Jam in your browser!
 
-> npm i && npm start
+AmpBox is a browser based virtual pedalboard / ampsimbuilt using React, Tailwind & ToneJS. This is experimental as of now and might be unstable.
 
-Todo:
-Réglé le mono de mon interface
+## Commands to run the project
 
-Ideas:
-StereoWidener Pedal
-Tremolo Pedal
-Compressor Pedal
-Ajouter / Réordonner pedales
-Visualizer
-Métronome
-Enregistrer ce qu'on joue
+```
+npm i
+npm start
+```
+
+## Environments
+
+#### Production
+
+http://ampbox.io/
+
+## Next on the todo list:
+
+- Record as a wav
+- StereoWidener Pedal
+- Tremolo Pedal
+- Compressor Pedal
+- Make your own pedalboard (add / order pedals)
+- Visualizer
+- Metronome
+
+✌️✌️✌️✌✌
