@@ -12,9 +12,10 @@ const Knob = ({ diameter, set, disabled, label, ...rest }: Props) => {
   const [amount, setAmount] = useState(50)
   const knobRef = useRef<HTMLInputElement>(null)
 
-  const handleChange = useCallback((e: any) => {
-    setAmount(Number(e.target.value))
-    set(Number(e.target.value))
+  const handleChange = useCallback((e: Event) => {
+    const target = e.target as HTMLInputElement
+    setAmount(Number(target.value))
+    set(Number(target.value))
   }, [])
 
   useEffect(() => {

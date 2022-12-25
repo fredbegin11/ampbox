@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { FormEvent, useEffect } from 'react'
 import { useSource } from 'src/hooks'
 import { Select } from 'src/components/common'
 import classNames from 'classnames'
@@ -14,9 +14,9 @@ const SourceSelector = () => {
 
   const options = inputs.map((input) => ({ label: input.name, value: input.id }))
 
-  const handleChange = (e: any) => {
-    const selectedValue = e.target.value as string
-    const selectedInput = inputs.find((input) => input.id === selectedValue)
+  const handleChange = (e: FormEvent<HTMLSelectElement>) => {
+    const target = e.target as HTMLSelectElement
+    const selectedInput = inputs.find((input) => input.id === target.value)
     if (selectedInput) {
       init(selectedInput)
     }
