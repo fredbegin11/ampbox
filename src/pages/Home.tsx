@@ -4,7 +4,7 @@ import VolumePedal from 'src/components/effects/VolumePedal'
 
 const Home = () => {
   return (
-    <div className='min-w-[500px]'>
+    <div>
       <Header />
       <div className='h-full bg-neutral-50 flex flex-col p-8 space-y-8'>
         <SourceSelector />
@@ -12,7 +12,7 @@ const Home = () => {
         <div className='flex flex-col gap-16 items-center'>
           <Amplifier />
 
-          <div className='flex flex-wrap gap-8 justify-center' onClick={(e) => e.stopPropagation()}>
+          <div className='flex flex-wrap gap-8 justify-center'>
             <DistortionPedal />
             <PhaserPedal />
             <ChorusPedal />

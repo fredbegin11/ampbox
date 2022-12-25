@@ -16,12 +16,6 @@ const Amplifier = ({ disabled }: Props) => {
   const volume = useVolume()
   const gain = useGain()
 
-  const activate = () => {
-    volume.activate()
-    gain.activate()
-    eq.activate()
-  }
-
   useEffect(() => {
     if (source && !isActive) {
       setIsActive(true)
@@ -29,14 +23,24 @@ const Amplifier = ({ disabled }: Props) => {
     }
   }, [source, isActive])
 
+  const activate = () => {
+    volume.activate()
+    gain.activate()
+    eq.activate()
+  }
+
+  const changeVolume = (value: number) => {
+    volume.setVolume(value)
+    gain.setGain(value)
+  }
+
   return (
     <div className='carbon flex flex-col justify-center rounded-3xl items-center shadow-pedal relative p-8'>
       <div className='p-4 rounded bg-slate-200 flex justify-between items-center'>
-        <Knob diameter='60' label='Volume' set={volume.setVolume} disabled={disabled} />
-        <Knob diameter='60' label='Gain' set={gain.setGain} disabled={disabled} />
-        <Knob diameter='60' label='Low' set={eq.setLow} disabled={disabled} />
-        <Knob diameter='60' label='Mid' set={eq.setMid} disabled={disabled} />
-        <Knob diameter='60' label='High' set={eq.setHigh} disabled={disabled} />
+        <Knob diameter='50' label='Volume' set={changeVolume} disabled={disabled} />
+        <Knob diameter='50' label='Low' set={eq.setLow} disabled={disabled} />
+        <Knob diameter='50' label='Mid' set={eq.setMid} disabled={disabled} />
+        <Knob diameter='50' label='High' set={eq.setHigh} disabled={disabled} />
 
         <div className='flex flex-col items-center'>
           <span className='block'>Power</span>
@@ -50,7 +54,7 @@ const Amplifier = ({ disabled }: Props) => {
       </div>
 
       <div className='h-full relative pt-8 text-white'>
-        <img src={grid} className='rounded-xl object-cover h-[300px] w-[400px] border-4 border-white' />
+        <img src={grid} className='rounded-xl object-cover h-[300px] w-[290px] border-4 border-white' />
 
         <div className='flex flex-col items-center justify-center absolute top-8 left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.8)] rounded-xl'>
           <span className='text-3xl'>AmpBox</span>
