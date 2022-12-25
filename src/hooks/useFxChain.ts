@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react'
 import { FxChainContext } from 'src/context'
 import { Effect } from 'src/types/Effect'
-import { Destination, ToneAudioNode } from 'tone'
+import { getDestination, ToneAudioNode } from 'tone'
 
 const useFxChain = () => {
   const { fxChain, setChain } = useContext(FxChainContext)
@@ -16,7 +16,7 @@ const useFxChain = () => {
   }
 
   useEffect(() => {
-    Destination.chain(...fxChain.map((item) => item.node))
+    getDestination().chain(...fxChain.map((item) => item.node))
   }, [fxChain])
 
   return { fxChain, add, remove }

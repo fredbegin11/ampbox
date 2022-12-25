@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { Destination, Player, UserMedia } from 'tone'
+import { getDestination, Player, UserMedia, setContext, Context } from 'tone'
 import { SourceContext } from 'src/context'
 import { Input } from 'src/types/Input'
 
@@ -7,16 +7,18 @@ const useSource = () => {
   const { source, setSource, inputs, setHasPermissions, hasPermission } = useContext(SourceContext)
 
   const init = async (input: Input) => {
+    const context = new Context(new AudioContext({ latencyHint: 0, sampleRate: 44100 }))
+    setContext(context)
     source?.dispose()
 
     if (typeof input.media === 'string') {
       const musicPlayer = new Player({ url: input.media, loop: true, autostart: true })
-      musicPlayer.chain(Destination)
+      musicPlayer.chain(getDestination())
       setSource(musicPlayer)
     } else {
-      const userMedia = new UserMedia()
+      const userMedia = new UserMedia({ context: context })
       await userMedia.open(input.media.deviceId)
-      userMedia.chain(Destination)
+      userMedia.chain(getDestination())
       setSource(userMedia)
     }
   }
