@@ -33,7 +33,7 @@ const useCabinet = () => {
     }
   }, [isActive])
 
-  return { activate, deactivate, toneAudioNode: cabinetRef.current }
+  return { activate, deactivate }
 }
 
 export default useCabinet

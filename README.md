@@ -20,11 +20,8 @@ http://ampbox.io/
 ## Next on the todo list:
 
 - Work on the UI / UX
-- StereoWidener Pedal
-- Tremolo Pedal
-- Compressor Pedal
 - Make your own pedalboard (add / order pedals)
-- Sound Visualizer
+- Sound + Visualizer
 - Metronome
 
 ✌️✌️✌️✌✌

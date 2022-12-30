@@ -1,10 +1,11 @@
 import { FormEvent, useEffect } from 'react'
-import { useSource } from 'src/hooks'
+import { useRecorder, useSource } from 'src/hooks'
 import { Select } from 'src/components/common'
-import classNames from 'classnames'
+import { MicrophoneIcon, StopIcon } from '@heroicons/react/24/solid'
 
 const SourceSelector = () => {
-  const { init, inputs, hasPermission, checkPermissions } = useSource()
+  const { init, inputs, hasPermission, checkPermissions, isActive } = useSource()
+  const recorder = useRecorder()
 
   useEffect(() => {
     if (!hasPermission) {
@@ -23,9 +24,9 @@ const SourceSelector = () => {
   }
 
   return (
-    <div className='flex flex-col space-y-2 items-center'>
-      <h2 className='text-xl font-bold'>Current source</h2>
-      <div className='flex space-x-3'>
+    <div className='flex space-y-2 items-center flex-col'>
+      <h2 className='text-xl font-bold'>Audio source</h2>
+      <div className='flex space-x-3 items-center'>
         <Select
           defaultValue=''
           name='Source'
@@ -34,14 +35,22 @@ const SourceSelector = () => {
           options={options}
           onChange={handleChange}
         />
+        {isActive && (
+          <button
+            className='bg-neutral-800 text-white font-medium rounded-full p-3'
+            disabled={!isActive}
+            onClick={recorder.isRecording ? recorder.stopRecording : recorder.startRecording}
+          >
+            {recorder.isRecording ? <StopIcon className='w-5 h-5' /> : <MicrophoneIcon className='w-5 h-5' />}
+          </button>
+        )}
       </div>
 
-      <span>
-        Microphone permission:
-        <span className={classNames('ml-1', { 'text-red-600': !hasPermission, 'text-green-600': hasPermission })}>
-          {hasPermission ? 'Okay' : 'Denied'}
+      {!hasPermission && (
+        <span>
+          Microphone permission: <span className='ml-1 text-red-600'>Denied</span>
         </span>
-      </span>
+      )}
     </div>
   )
 }

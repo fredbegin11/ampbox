@@ -6,7 +6,7 @@ import beer from 'src/assets/images/beer.png'
 
 const Header = ({ className, ...rest }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>) => {
   return (
-    <header className={classNames('px-8 py-4 bg-neutral-900', className)} {...rest}>
+    <header className={classNames('px-8 py-4 bg-gray-900', className)} {...rest}>
       <nav>
         <div className='flex justify-between items-center'>
           <Link to='/' className='flex items-center space-x-4'>
